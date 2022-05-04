@@ -21,13 +21,28 @@ namespace ApplicationInsightsDemoApp.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            var rtn = Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = Random.Shared.Next(-20, 55),
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            }).ToArray();
+
+            _logger.LogInformation("weatherforecasted called with " + rtn);
+
+
+            if (rtn.Any(_ => _.Summary == "Warm"))
+            {
+                var exp = new Exception("Failed to connect to database");
+
+                _logger.LogError(exp, "weatherforecasted called failed ");
+
+                throw exp;
+            }
+
+
+
+            return rtn.ToArray();
         }
     }
 }

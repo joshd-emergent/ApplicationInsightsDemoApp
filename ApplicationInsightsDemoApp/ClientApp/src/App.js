@@ -5,18 +5,23 @@ import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 
-import './custom.css'
+import { AppInsightsContext } from "@microsoft/applicationinsights-react-js";
+import { reactPlugin } from "./AppInsights";
+
+import './custom.css';
 
 export default class App extends Component {
   static displayName = App.name;
 
-  render () {
+  render() {
     return (
-      <Layout>
-        <Route exact path='/' component={Home} />
-        <Route path='/counter' component={Counter} />
-        <Route path='/fetch-data' component={FetchData} />
-      </Layout>
+      <AppInsightsContext.Provider value={reactPlugin}>
+        <Layout>
+          <Route exact path='/' component={Home} />
+          <Route path='/counter' component={Counter} />
+          <Route path='/fetch-data' component={FetchData} />
+        </Layout>
+      </AppInsightsContext.Provider>
     );
   }
 }

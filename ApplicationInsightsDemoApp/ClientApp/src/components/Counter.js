@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+// import { useAppInsightsContext, useTrackEvent } from "@microsoft/applicationinsights-react-js";
+import { trackEvent, trackException } from '../AppInsights';
 
 export class Counter extends Component {
   static displayName = Counter.name;
@@ -7,9 +9,17 @@ export class Counter extends Component {
     super(props);
     this.state = { currentCount: 0 };
     this.incrementCounter = this.incrementCounter.bind(this);
+    // const appInsights = useAppInsightsContext();
+    // const trackCheckout = useTrackEvent(appInsights, "Checkout", cart);
   }
 
   incrementCounter() {
+    trackEvent('incrementCounter', { name: `counter incremented from ${this.state.currentCount} to ${this.state.currentCount + 1}`, state: this.state });
+
+    if (this.state.currentCount > 5) {
+      console.log("break");
+      var breakExpection = this.state.currentCount.break.break;
+    }
     this.setState({
       currentCount: this.state.currentCount + 1
     });

@@ -11,9 +11,12 @@
     <SpaProxyServerUrl>https://localhost:44409</SpaProxyServerUrl>
     <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>c5470cd8-dea8-4ccd-a1ec-fa57278d0675</UserSecretsId>
+    <ApplicationInsightsResourceId>/subscriptions/45176478-b4ab-4062-85d9-ef390acf064e/resourceGroups/ApplicationInsightsDemoApp20220429052920ResourceGroup/providers/microsoft.insights/components/ApplicationInsightsDemoApp20220429052920</ApplicationInsightsResourceId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.4" />
   </ItemGroup>
 
